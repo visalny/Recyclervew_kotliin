@@ -5,4 +5,9 @@ class Weather{
    var max: String? = null
      var min: String? = null
 
+    constructor(province: String?, max: String?, min: String?) {
+        this.province = province
+        this.max = max
+        this.min = min
+    }
 }
