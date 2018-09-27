@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import edu.rupp.ckcc.recyclerview_kotlin.database.DbManager
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,14 +17,20 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = layoutManager
 
         var eventAdapter=EventAdapter(this)
-        var weather = Weather("k","1","2")
-        var weather2=Weather("p","","")
-        var weathers= arrayOf(weather,weather2)
+
+        val dbManager = DbManager(this)
+        dbManager.InsertData()
+        //create tempory data
+        val events = dbManager.getAllEvent()
+
+//        var weather = Weather("k","1","2")
+//        var weather2=Weather("p","","")
+        //var weathers= arrayOf(weather,weather2)
 //        var weathers= arrayOf<Weather>()
 //        weathers[0]=Weather("k","1","2")
 //        weathers[1]=Weather("p","","")
 //        weathers[2]=Weather("kk","2","3")
-        eventAdapter.data=weathers
+        eventAdapter.data=events
         recyclerView.adapter=eventAdapter
 
     }
